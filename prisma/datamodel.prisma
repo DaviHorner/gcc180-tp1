@@ -1,0 +1,7 @@
+model Tarefa {
+  id String @id 
+  nome String
+  desc String
+  prazo DateTime
+  concluido Boolean @default(value: false)
+}
