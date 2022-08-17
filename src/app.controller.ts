@@ -18,7 +18,7 @@ export class AppController {
 
   @Get('tarefas/:id')
   async getTarefa(@Param('id') id: string):Promise<Tarefa>{
-    return await this.appService.getTarefa({ id: Number(id) });
+    return await this.appService.getTarefa({ id: String(id) });
   }
  
   @Post('tarefas')
@@ -29,13 +29,13 @@ export class AppController {
   @Put('tarefas/:id')
   async putTarefas(@Param('id') id: string): Promise<Tarefa> {
     return this.appService.updateTarefa({
-      where: { id: Number(id) },
-      data: { completa: true },
+      where: { id: String(id) },
+      data: { concluido: true },
     });
   }
 
   @Delete(`/tarefas/:id`)
   async deleteTarefa(@Param('id') id: string):Promise<Tarefa>{
-    return await this.appService.deleteTarefa({ id: Number(id) });
+    return await this.appService.deleteTarefa({ id: String(id) });
 }
 }
