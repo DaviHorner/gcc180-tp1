@@ -1,6 +1,6 @@
-import { Controller, Delete, Get, Param, Post, Put } from '@nestjs/common';
+import { Body, Controller, Delete, Get, Param, Post, Put } from '@nestjs/common';
 import { AppService } from './app.service';
-
+import {Prisma, Tarefa } from '@prisma/client'
 
 @Controller()
 export class AppController {
@@ -35,10 +35,7 @@ export class AppController {
   }
 
   @Delete(`/tarefas/:id`)
-  async deleteTarefa(@Param(:id) id: string):Promise<Tarefa> {
-    const params: Prisma.EventWhereUniqueInput = {
-      id: id,
-    };
-    return this.appService.deleteTarefa(params);
-  }
+  async deleteTarefa(@Param('id') id: string):Promise<Tarefa>{
+    return await this.appService.deleteTarefa({ id: Number(id) });
+}
 }
