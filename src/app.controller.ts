@@ -1,5 +1,6 @@
-import { Controller, Delete, Get, Post, Put } from '@nestjs/common';
+import { Controller, Delete, Get, Param, Post, Put } from '@nestjs/common';
 import { AppService } from './app.service';
+
 
 @Controller()
 export class AppController {
@@ -10,15 +11,34 @@ export class AppController {
     return this.appService.getHello();
   }
 
-  @Get(`/tarefas`)
-  async get() {}
+  @Get('tarefas')
+  async getTarefas():Promise<Tarefa[]>{
+    return await this.appService.getTarefas({});
+  }
 
-  @Post(`/tarefas`)
-  async post() {}
+  @Get('tarefas/:id')
+  async getTarefa(@Param('id') id: string):Promise<Tarefa>{
+    return await this.appService.getTarefa({ id: Number(id) });
+  }
+ 
+  @Post('tarefas')
+  async postTarefas(@Body() dados: Tarefa){
+    await this.appService.postTarefa(dados);
+  }
 
-  @Put(`/tarefas`)
-  async put() {}
+  @Put('tarefas/:id')
+  async putTarefas(@Param('id') id: string): Promise<Tarefa> {
+    return this.appService.updateTarefa({
+      where: { id: Number(id) },
+      data: { completa: true },
+    });
+  }
 
-  @Delete(`/tarefas`)
-  async delete() {}
+  @Delete(`/tarefas/:id`)
+  async deleteTarefa(@Param(:id) id: string):Promise<Tarefa> {
+    const params: Prisma.EventWhereUniqueInput = {
+      id: id,
+    };
+    return this.appService.deleteTarefa(params);
+  }
 }

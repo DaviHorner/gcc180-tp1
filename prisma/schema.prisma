@@ -13,4 +13,7 @@ datasource db {
 model Tarefa {
   id String @id @default(auto()) @map("_id") @db.ObjectId
   nome String
+  desc String
+  prazo DateTime
+  concluido Boolean? @default(false)
 }
