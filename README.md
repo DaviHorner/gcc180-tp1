@@ -62,6 +62,9 @@ https://www.prisma.io/docs/concepts/database-connectors/mongodb
 Prisma MongoDB Migration <br>
 https://v1.prisma.io/docs/1.34/datamodel-and-migrations/migrations-MONGO-asd1/
 
+Fix NestJS on Heroku
+https://dev.to/rosyshrestha/deploy-nestjs-typescript-app-to-heroku-27e
+
 ## License
 
 Nest is [MIT licensed](LICENSE).
