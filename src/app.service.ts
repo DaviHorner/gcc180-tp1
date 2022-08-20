@@ -1,12 +1,12 @@
 import { Injectable } from '@nestjs/common';
 import { Tarefa, Prisma, PrismaClient } from '.prisma/client'
+import { PrismaService } from './prisma.service';
 
 
 @Injectable()
 export class AppService {
-  constructor(private prisma = new PrismaClient()) {
-
-  }
+  constructor(private prisma: PrismaService) {}
+  
   getHello(): string {
     return 'Hello World!';
   }
