@@ -11,22 +11,22 @@ export class AppController {
     return this.appService.getHello();
   }
 
-  @Get('tarefas')
+  @Get('/tarefas')
   async getTarefas():Promise<Tarefa[]>{
     return await this.appService.getTarefas({});
   }
 
-  @Get('tarefas/:id')
+  @Get('/tarefas/:id')
   async getTarefa(@Param('id') id: string):Promise<Tarefa>{
     return await this.appService.getTarefa({ id: String(id) });
   }
  
-  @Post('tarefas')
+  @Post('/tarefas')
   async postTarefas(@Body() dados: Tarefa){
     await this.appService.postTarefa(dados);
   }
 
-  @Put('tarefas/:id')
+  @Put('/tarefas/:id')
   async putTarefas(@Param('id') id: string): Promise<Tarefa> {
     return this.appService.updateTarefa({
       where: { id: String(id) },
